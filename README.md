@@ -70,10 +70,13 @@ npm run dev
 - **AI Chat**: Environmental insights chatbot
 - **Real-time Stats**: Environmental metrics updating every 20 seconds
 
+**Note**: By default, the app uses enhanced mock data with realistic variations. The data will change over time with daily/weekly cycles and trends.
+
 ### Troubleshooting
 - **Port conflicts**: If ports are busy, the servers will tell you which ports to use
 - **Python issues**: Make sure you're using Python 3.11+ and have activated the virtual environment
 - **Node issues**: Make sure you have Node.js 18+ installed
+- **Data not changing**: The app uses mock data by default. See "Real Data Setup" section below for real environmental data
 
 ### Project Structure
 ```
@@ -136,9 +139,34 @@ gaia-pulse/
 - `ChatSidebar`: EarthGPT interface
 - `StatCard`: Environmental metrics display
 
+## Real Data Setup
+
+To use real environmental data instead of mock data:
+
+### Option 1: Quick Setup Script
+```bash
+cd backend
+python setup_real_data.py
+```
+
+### Option 2: Manual Configuration
+1. Create a `.env` file in the `backend/` directory
+2. Add your API keys:
+```env
+ENABLE_MOCK_DATA=false
+NASA_API_KEY=your_nasa_api_key
+WEATHER_API_KEY=your_weather_api_key
+AIR_QUALITY_API_KEY=your_air_quality_api_key
+```
+
+### Free API Keys
+- **NASA API**: https://api.nasa.gov/ (free tier available)
+- **Weather APIs**: OpenWeatherMap, WeatherAPI (free tiers available)
+- **Air Quality**: OpenWeatherMap Air Quality, AirVisual (free tiers available)
+
 ## Future Enhancements
 
-- **Real Data Integration**: Connect to actual environmental APIs
+- **Real Data Integration**: Connect to actual environmental APIs ✅ (Ready to use)
 - **IBM watsonx.ai**: Integrate with Watson for advanced AI insights
 - **Geographic Filtering**: Region-specific environmental data
 - **Predictive Analytics**: AI-powered environmental forecasting

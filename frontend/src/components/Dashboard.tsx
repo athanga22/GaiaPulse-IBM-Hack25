@@ -11,8 +11,11 @@ import { Thermometer, Droplets, TreePine, Wind } from 'lucide-react'
 
 export function Dashboard() {
   const [isChatOpen, setIsChatOpen] = useState(false)
-  const { data: currentMood, isLoading: moodLoading } = useCurrentMood()
+  const { data: currentMood, isLoading: moodLoading, refetch: refetchMood } = useCurrentMood()
   const { data: pulseHistory, isLoading: historyLoading } = usePulseHistory()
+
+  // Debug logging
+  console.log('Dashboard mood data:', { currentMood, moodLoading })
 
   // Dynamic floating particles effect based on mood
   useEffect(() => {
@@ -89,6 +92,27 @@ export function Dashboard() {
           padding: '2rem 1.5rem',
           position: 'relative'
         }}>
+          {/* Debug Refresh Button */}
+          <button
+            onClick={() => refetchMood()}
+            style={{
+              position: 'fixed',
+              bottom: '2rem',
+              right: '8rem',
+              zIndex: 30,
+              padding: '0.75rem',
+              background: 'rgba(99, 102, 241, 0.8)',
+              border: 'none',
+              borderRadius: '50%',
+              color: 'white',
+              cursor: 'pointer',
+              fontSize: '1.5rem'
+            }}
+            title="Refresh mood data"
+          >
+            🔄
+          </button>
+
           {/* Chat Button */}
           <button
             onClick={() => setIsChatOpen(true)}

@@ -41,7 +41,7 @@ class Settings:
         
         # Security
         self.secret_key = os.getenv("SECRET_KEY", "your-secret-key-change-in-production")
-        self.cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:5174,http://localhost:3000").split(",")
+        self.cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://localhost:5174,http://localhost:3000").split(",")
         
         # Data Sources
         self.enable_mock_data = os.getenv("ENABLE_MOCK_DATA", "true").lower() == "true"

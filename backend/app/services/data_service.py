@@ -3,6 +3,7 @@ Data service for environmental data collection and processing
 """
 import logging
 import random
+import math
 from typing import List, Dict, Any, Optional
 from datetime import datetime, timedelta
 import httpx
@@ -33,24 +34,48 @@ class DataService:
             return await self._get_mock_environmental_data()
     
     async def _get_mock_environmental_data(self) -> Dict[str, Any]:
-        """Generate mock environmental data"""
+        """Generate mock environmental data with realistic variations"""
         base_time = datetime.utcnow()
         
-        # Simulate realistic environmental data with some variation
-        temperature = 15.2 + random.uniform(-0.5, 0.5)
-        co2_levels = 420 + random.uniform(-2, 2)
-        forest_cover = 31.2 + random.uniform(-0.1, 0.1)
-        ocean_health = 72.0 + random.uniform(-1, 1)
+        # Use timestamp to create more varied but realistic data
+        time_factor = (base_time.hour + base_time.minute / 60) / 24  # 0-1 over 24 hours
+        day_factor = base_time.weekday() / 7  # 0-1 over week
+        
+        # Simulate realistic environmental data with more variation
+        # Temperature varies more throughout the day and week
+        base_temp = 15.2
+        daily_variation = 3 * math.sin(time_factor * 2 * math.pi)  # Daily cycle
+        weekly_variation = 2 * math.sin(day_factor * 2 * math.pi)  # Weekly cycle
+        random_variation = random.uniform(-1, 1)
+        temperature = base_temp + daily_variation + weekly_variation + random_variation
+        
+        # CO2 levels with gradual increase trend and some variation
+        base_co2 = 420
+        trend_increase = (base_time.timestamp() - 1700000000) / 86400 * 0.01  # Gradual increase
+        daily_co2_variation = random.uniform(-3, 3)
+        co2_levels = base_co2 + trend_increase + daily_co2_variation
+        
+        # Forest cover with slight decline trend
+        base_forest = 31.2
+        forest_decline = (base_time.timestamp() - 1700000000) / 86400 * -0.0001  # Very slow decline
+        forest_variation = random.uniform(-0.2, 0.2)
+        forest_cover = base_forest + forest_decline + forest_variation
+        
+        # Ocean health with seasonal variation
+        base_ocean = 72.0
+        seasonal_variation = 2 * math.sin((base_time.timestamp() - 1700000000) / 86400 * 2 * math.pi / 365)  # Yearly cycle
+        ocean_variation = random.uniform(-1.5, 1.5)
+        ocean_health = base_ocean + seasonal_variation + ocean_variation
         
         return {
             "temperature": round(temperature, 1),
             "co2_levels": round(co2_levels, 1),
             "forest_cover": round(forest_cover, 1),
             "ocean_health": round(ocean_health, 1),
-            "air_quality_index": random.randint(45, 85),
-            "sea_level_rise": round(3.4 + random.uniform(-0.1, 0.1), 2),
-            "biodiversity_index": round(68.5 + random.uniform(-2, 2), 1),
-            "renewable_energy_share": round(12.7 + random.uniform(-0.5, 0.5), 1),
+            "air_quality_index": random.randint(35, 95),  # Wider range
+            "sea_level_rise": round(3.4 + (base_time.timestamp() - 1700000000) / 86400 * 0.0001 + random.uniform(-0.2, 0.2), 2),
+            "biodiversity_index": round(68.5 + random.uniform(-3, 3), 1),
+            "renewable_energy_share": round(12.7 + (base_time.timestamp() - 1700000000) / 86400 * 0.001 + random.uniform(-0.8, 0.8), 1),
             "timestamp": base_time,
             "sources": ["mock_data"]
         }
@@ -116,14 +141,23 @@ class DataService:
             for i in range(days * 24):  # Hourly data points
                 timestamp = base_time - timedelta(hours=i)
                 
-                # Generate realistic historical data with trends
+                # Generate realistic historical data with trends and cycles
                 base_temp = 15.0
-                temp_variation = random.uniform(-2, 2)
-                temperature = base_temp + temp_variation + (i * 0.001)  # Slight warming trend
+                # Add daily and weekly cycles to temperature
+                hour_of_day = timestamp.hour
+                day_of_week = timestamp.weekday()
+                daily_cycle = 2 * math.sin((hour_of_day / 24) * 2 * math.pi)
+                weekly_cycle = 1 * math.sin((day_of_week / 7) * 2 * math.pi)
+                temp_variation = random.uniform(-1.5, 1.5)
+                warming_trend = (i * 0.002)  # Gradual warming trend
+                temperature = base_temp + daily_cycle + weekly_cycle + temp_variation + warming_trend
                 
                 base_co2 = 420
-                co2_variation = random.uniform(-1, 1)
-                co2_levels = base_co2 + co2_variation + (i * 0.01)  # Slight increase trend
+                # CO2 with daily patterns (lower during day due to photosynthesis)
+                co2_daily_pattern = -2 * math.sin((hour_of_day / 24) * 2 * math.pi)  # Lower during day
+                co2_variation = random.uniform(-2, 2)
+                co2_trend = (i * 0.015)  # Gradual increase trend
+                co2_levels = base_co2 + co2_daily_pattern + co2_variation + co2_trend
                 
                 # Create data point
                 point = Point(

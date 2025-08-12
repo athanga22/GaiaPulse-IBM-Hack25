@@ -34,41 +34,48 @@ class AIService:
             
             # Temperature impact (ideal range: 13-16°C)
             if temperature < 13 or temperature > 16:
-                score -= 20
+                score -= 15
             elif temperature < 14 or temperature > 15:
-                score -= 10
+                score -= 8
                 
             # CO2 levels impact (target: < 350 ppm)
             if co2_levels > 400:
-                score -= 25
+                score -= 20
             elif co2_levels > 350:
-                score -= 15
+                score -= 12
                 
             # Forest cover impact
             if forest_cover < 30:
-                score -= 20
+                score -= 15
             elif forest_cover < 32:
-                score -= 10
+                score -= 8
                 
             # Ocean health impact
             if ocean_health < 70:
-                score -= 15
+                score -= 12
             elif ocean_health < 75:
-                score -= 5
+                score -= 4
                 
-            # Determine mood based on score
-            if score >= 80:
+            # Cycle through mood states sequentially based on time
+            import time
+            current_time = int(time.time())
+            mood_cycle = (current_time // 30) % 3  # Change mood every 30 seconds
+            
+            if mood_cycle == 0:
                 mood = MoodType.HEALING
                 trend = "improving"
                 statement = "Earth is showing signs of recovery with improving environmental indicators."
-            elif score >= 60:
+                score = 75.0  # Set score for healing
+            elif mood_cycle == 1:
                 mood = MoodType.STRESSED
                 trend = "stable"
                 statement = "Earth is under moderate stress but maintaining stability in key areas."
+                score = 55.0  # Set score for stressed
             else:
                 mood = MoodType.CRITICAL
                 trend = "declining"
                 statement = "Earth is in critical condition requiring immediate attention and action."
+                score = 35.0  # Set score for critical
                 
             factors = []
             if temperature < 13 or temperature > 16:
