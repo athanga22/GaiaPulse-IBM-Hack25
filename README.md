@@ -14,30 +14,73 @@ GaiaPulse translates complex environmental data into Earth's emotional state, ma
 ## Quick Start
 
 ### Prerequisites
-- Node.js 18+ 
-- Python 3.11+
-- npm or yarn
+Make sure you have these installed:
+- **Node.js 18+** (check with `node --version`)
+- **Python 3.11+** (check with `python --version`)
+- **npm** (comes with Node.js)
 
-### Frontend Setup
+### Step 1: Clone & Setup
 ```bash
+# Clone the repository
+git clone https://github.com/Ilyes2000/GaiaPulse-IBM-Hack25.git
+cd GaiaPulse-IBM-Hack25
+
+# Install frontend dependencies
 cd frontend
 npm install
-npm run dev
 ```
 
-### Backend Setup
+### Step 2: Start Backend
 ```bash
+# Open a new terminal window/tab
 cd backend
+
+# Create virtual environment
 python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Activate virtual environment
+# On Mac/Linux:
+source .venv/bin/activate
+# On Windows:
+# .venv\Scripts\activate
+
+# Install Python dependencies
 pip install -r requirements.txt
+
+# Start the backend server
 uvicorn main:app --reload --port 8787
 ```
 
-### Environment Variables
-Create `.env` file in frontend directory:
-```env
-VITE_API_BASE_URL=/api
+### Step 3: Start Frontend
+```bash
+# Open another terminal window/tab
+cd frontend
+
+# Start the development server
+npm run dev
+```
+
+### Step 4: Access the App
+- **Frontend**: Open `http://localhost:5173` in your browser
+- **Backend API**: Available at `http://localhost:8787`
+
+### What You'll See
+- **Earth's Mood Circle**: Animated visualization of Earth's current state
+- **Pulse History Chart**: 7-day environmental trends
+- **AI Chat**: Environmental insights chatbot
+- **Real-time Stats**: Environmental metrics updating every 20 seconds
+
+### Troubleshooting
+- **Port conflicts**: If ports are busy, the servers will tell you which ports to use
+- **Python issues**: Make sure you're using Python 3.11+ and have activated the virtual environment
+- **Node issues**: Make sure you have Node.js 18+ installed
+
+### Project Structure
+```
+GaiaPulse-IBM-Hack25/
+├── frontend/          # React app (port 5173)
+├── backend/           # FastAPI server (port 8787)
+└── README.md
 ```
 
 ## Architecture
