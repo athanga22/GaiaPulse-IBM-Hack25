@@ -1,0 +1,27 @@
+{
+  "name": "gaia-pulse",
+  "version": "1.0.0",
+  "description": "Earth's Vital Signs Monitor - AI-powered environmental monitoring dashboard",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && source .venv/bin/activate && uvicorn main:app --reload --port 8787",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt",
+    "build": "cd frontend && npm run build",
+    "preview": "cd frontend && npm run preview"
+  },
+  "keywords": [
+    "environmental",
+    "climate",
+    "monitoring",
+    "ai",
+    "dashboard",
+    "react",
+    "fastapi"
+  ],
+  "author": "GaiaPulse Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -1,0 +1,267 @@
+@import 'tailwindcss';
+
+/* Global Styles */
+html {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f3460 100%);
+  color: #e2e8f0;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
+}
+
+/* Text Selection */
+::selection {
+  background: rgba(99, 102, 241, 0.3);
+  color: #f8fafc;
+}
+
+/* Custom Components */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card-hover {
+  transition: all 0.3s ease;
+}
+
+.glass-card-hover:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Mood Circle Styles */
+.mood-circle {
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.25rem;
+  font-weight: bold;
+}
+
+.mood-circle.healing {
+  background: linear-gradient(135deg, #10b981, #059669, #047857);
+  box-shadow: 
+    0 0 60px rgba(16, 185, 129, 0.3),
+    inset 0 0 60px rgba(16, 185, 129, 0.1),
+    0 0 120px rgba(16, 185, 129, 0.1);
+}
+
+.mood-circle.stressed {
+  background: linear-gradient(135deg, #f59e0b, #d97706, #b45309);
+  box-shadow: 
+    0 0 60px rgba(245, 158, 11, 0.3),
+    inset 0 0 60px rgba(245, 158, 11, 0.1),
+    0 0 120px rgba(245, 158, 11, 0.1);
+}
+
+.mood-circle.critical {
+  background: linear-gradient(135deg, #ef4444, #dc2626, #b91c1c);
+  box-shadow: 
+    0 0 60px rgba(239, 68, 68, 0.3),
+    inset 0 0 60px rgba(239, 68, 68, 0.1),
+    0 0 120px rgba(239, 68, 68, 0.1);
+}
+
+/* Stat Card Styles */
+.stat-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  transform: translateY(-4px);
+}
+
+/* Dynamic Particle Animations */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Critical - Sparks */
+.particle-spark {
+  animation: spark 5s linear infinite;
+  filter: blur(0.5px);
+}
+
+@keyframes spark {
+  0% {
+    transform: translateY(100vh) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(90vh) scale(1) rotate(45deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(50vh) scale(1.2) rotate(180deg);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(10vh) scale(0.8) rotate(315deg);
+  }
+  100% {
+    transform: translateY(-50px) scale(0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Stressed - Slower, heavier particles */
+.particle-stressed {
+  animation: stressed-float 20s linear infinite;
+  filter: blur(1px);
+}
+
+@keyframes stressed-float {
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.6;
+  }
+  85% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Healing/Neutral - Gentle floating */
+.particle-gentle {
+  animation: gentle-float 25s linear infinite;
+  filter: blur(0.5px);
+}
+
+@keyframes gentle-float {
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-100px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Professional Color System */
+.text-primary { color: #f8fafc; }
+.text-secondary { color: #e2e8f0; }
+.text-muted { color: #94a3b8; }
+.text-accent { color: #6366f1; }
+.text-success { color: #10b981; }
+.text-warning { color: #f59e0b; }
+.text-danger { color: #ef4444; }
+
+.bg-primary { background-color: rgba(0, 0, 0, 0.3); }
+.bg-secondary { background-color: rgba(255, 255, 255, 0.05); }
+.bg-accent { background-color: rgba(99, 102, 241, 0.1); }
+
+.border-primary { border-color: rgba(255, 255, 255, 0.1); }
+.border-accent { border-color: rgba(99, 102, 241, 0.3); }
+
+/* Tech Border */
+.tech-border {
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 0.5rem;
+  background: rgba(99, 102, 241, 0.05);
+}
+
+/* Monospace for technical elements */
+.mono {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Typography Scale */
+.text-xs { font-size: 0.75rem; line-height: 1rem; }
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.text-base { font-size: 1rem; line-height: 1.5rem; }
+.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+.text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+.text-5xl { font-size: 3rem; line-height: 1; }
+.text-6xl { font-size: 3.75rem; line-height: 1; }
+
+/* Font Weights */
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+.font-black { font-weight: 900; }
+
+/* Letter Spacing */
+.tracking-tight { letter-spacing: -0.025em; }
+.tracking-normal { letter-spacing: 0em; }
+.tracking-wide { letter-spacing: 0.025em; }
+.tracking-wider { letter-spacing: 0.05em; }
+.tracking-widest { letter-spacing: 0.1em; }
