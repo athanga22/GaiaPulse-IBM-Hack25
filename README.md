@@ -1,17 +1,17 @@
-# 🌍 GaiaPulse - Earth's Vital Signs Monitor
+# GaiaPulse - Earth's Vital Signs Monitor
 
 GaiaPulse translates complex environmental data into Earth's emotional state, making climate science accessible and engaging through an intuitive, AI-powered interface.
 
-## ✨ Features
+## Features
 
-- **🌍 Earth's Mood Visualization**: Real-time animated mood circle showing Earth's current state (Healing/Stressed/Critical)
-- **📊 7-Day Pulse History**: Interactive chart tracking environmental trends over time
-- **🤖 EarthGPT Chatbot**: AI-powered chat interface for environmental insights
-- **📈 Environmental Metrics**: Real-time monitoring of key indicators (temperature, CO₂, forest cover, ocean health)
-- **🔄 Live Updates**: Automatic data polling every 5-10 seconds
-- **📱 Responsive Design**: Beautiful interface that works on all devices
+- **Earth's Mood Visualization**: Real-time animated mood circle showing Earth's current state (Healing/Stressed/Critical)
+- **7-Day Pulse History**: Interactive chart tracking environmental trends over time
+- **EarthGPT Chatbot**: AI-powered chat interface for environmental insights
+- **Environmental Metrics**: Real-time monitoring of key indicators (temperature, CO₂, forest cover, ocean health)
+- **Live Updates**: Automatic data polling every 5-10 seconds
+- **Responsive Design**: Beautiful interface that works on all devices
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Node.js 18+ 
@@ -40,7 +40,7 @@ Create `.env` file in frontend directory:
 VITE_API_BASE_URL=/api
 ```
 
-## 🏗️ Architecture
+## Architecture
 
 ### Frontend (React + TypeScript)
 - **React 18** with Vite for fast development
@@ -56,20 +56,20 @@ VITE_API_BASE_URL=/api
 - **CORS** middleware for cross-origin requests
 - **Mock data generators** for realistic environmental simulations
 
-## 🎨 Design Philosophy
+## Design Philosophy
 
 GaiaPulse uses psychological metaphors to make environmental data more relatable:
 - **Healing**: Calm, slow pulse animation with green gradients
 - **Stressed**: Faster pulse with yellow/orange colors
 - **Critical**: Red flickering animation for urgent states
 
-## 🔧 API Endpoints
+## API Endpoints
 
 - `GET /api/current_mood` - Earth's current mood and score
 - `GET /api/pulse_history` - 7-day environmental trend data
 - `POST /api/chat` - EarthGPT conversation interface
 
-## 🛠️ Development
+## Development
 
 ### Project Structure
 ```
@@ -93,7 +93,7 @@ gaia-pulse/
 - `ChatSidebar`: EarthGPT interface
 - `StatCard`: Environmental metrics display
 
-## 🌟 Future Enhancements
+## Future Enhancements
 
 - **Real Data Integration**: Connect to actual environmental APIs
 - **IBM watsonx.ai**: Integrate with Watson for advanced AI insights
@@ -101,7 +101,7 @@ gaia-pulse/
 - **Predictive Analytics**: AI-powered environmental forecasting
 - **Mobile App**: Native iOS/Android applications
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -109,7 +109,7 @@ gaia-pulse/
 4. Add tests if applicable
 5. Submit a pull request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
