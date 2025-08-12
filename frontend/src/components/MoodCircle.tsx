@@ -467,27 +467,7 @@ export function MoodCircle({ mood, isLoading }: MoodCircleProps) {
             />
           </div>
           
-          <motion.div
-            style={{
-              fontSize: '2.5rem',
-              fontWeight: '800',
-              color: '#ffffff',
-              marginBottom: '0.5rem',
-              textShadow: `
-                0 2px 8px rgba(0,0,0,0.8),
-                0 0 20px rgba(0,0,0,0.6),
-                0 0 40px rgba(0,0,0,0.4),
-                0 0 60px rgba(0,0,0,0.2)
-              `,
-              filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.5))'
-            }}
-            key={displayScore}
-            initial={{ scale: 1.1, opacity: 0.8 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            {displayScore}%
-          </motion.div>
+
           
           <div style={{
             fontSize: '1.5rem',

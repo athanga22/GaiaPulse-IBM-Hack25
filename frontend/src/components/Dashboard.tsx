@@ -23,6 +23,9 @@ export function Dashboard() {
       const particle = document.createElement('div')
       const mood = currentMood?.mood || 'neutral'
       
+      // Debug logging
+      console.log('Creating particle for mood:', mood)
+      
       // Set particle properties based on mood
       if (mood === 'critical') {
         // Sparks for critical - fast, bright, red/orange
@@ -30,33 +33,39 @@ export function Dashboard() {
         particle.style.left = Math.random() * 100 + '%'
         particle.style.animationDelay = Math.random() * 2 + 's'
         particle.style.animationDuration = (Math.random() * 3 + 2) + 's'
-        particle.style.background = `rgba(${Math.random() > 0.5 ? '239, 68, 68' : '245, 101, 101'}, 0.8)`
-        particle.style.boxShadow = '0 0 8px rgba(239, 68, 68, 0.6)'
-        particle.style.width = '3px'
-        particle.style.height = '3px'
+        particle.style.background = `rgba(${Math.random() > 0.5 ? '239, 68, 68' : '245, 101, 101'}, 1.0)`
+        particle.style.boxShadow = '0 0 12px rgba(239, 68, 68, 0.8)'
+        particle.style.width = '6px'
+        particle.style.height = '6px'
       } else if (mood === 'stressed') {
-        // Slower, amber particles for stressed
+        // Smaller, more ominous particles for stressed
         particle.className = 'particle particle-stressed'
         particle.style.left = Math.random() * 100 + '%'
-        particle.style.animationDelay = Math.random() * 5 + 's'
-        particle.style.animationDuration = (Math.random() * 8 + 12) + 's'
-        particle.style.background = 'rgba(245, 158, 11, 0.4)'
-        particle.style.boxShadow = '0 0 6px rgba(245, 158, 11, 0.3)'
-        particle.style.width = '5px'
-        particle.style.height = '5px'
+        particle.style.animationDelay = Math.random() * 1 + 's'
+        particle.style.animationDuration = (Math.random() * 3 + 4) + 's'
+        particle.style.background = 'rgba(245, 158, 11, 0.6)'
+        particle.style.boxShadow = '0 0 8px rgba(245, 158, 11, 0.4)'
+        particle.style.width = '4px'
+        particle.style.height = '4px'
       } else {
         // Gentle, blue particles for healing/neutral
         particle.className = 'particle particle-gentle'
         particle.style.left = Math.random() * 100 + '%'
         particle.style.animationDelay = Math.random() * 20 + 's'
         particle.style.animationDuration = (Math.random() * 10 + 15) + 's'
-        particle.style.background = 'rgba(99, 102, 241, 0.3)'
-        particle.style.boxShadow = '0 0 4px rgba(99, 102, 241, 0.2)'
-        particle.style.width = '4px'
-        particle.style.height = '4px'
+        particle.style.background = 'rgba(99, 102, 241, 0.7)'
+        particle.style.boxShadow = '0 0 8px rgba(99, 102, 241, 0.5)'
+        particle.style.width = '7px'
+        particle.style.height = '7px'
       }
       
-      document.querySelector('.floating-particles')?.appendChild(particle)
+      const container = document.querySelector('.floating-particles')
+      if (container) {
+        container.appendChild(particle)
+        console.log('Particle added to container')
+      } else {
+        console.error('Floating particles container not found!')
+      }
       
       // Remove particle after animation
       const duration = mood === 'critical' ? 5000 : mood === 'stressed' ? 20000 : 25000
@@ -67,7 +76,9 @@ export function Dashboard() {
 
     // Adjust spawn rate based on mood
     const mood = currentMood?.mood || 'neutral'
-    const spawnRate = mood === 'critical' ? 100 : mood === 'stressed' ? 400 : 300 // More frequent for critical
+    const spawnRate = mood === 'critical' ? 50 : mood === 'stressed' ? 200 : 150 // More frequent for visibility
+    
+    console.log('Setting up particles with spawn rate:', spawnRate, 'ms for mood:', mood)
     
     const interval = setInterval(createParticle, spawnRate)
     return () => clearInterval(interval)
@@ -92,26 +103,7 @@ export function Dashboard() {
           padding: '2rem 1.5rem',
           position: 'relative'
         }}>
-          {/* Debug Refresh Button */}
-          <button
-            onClick={() => refetchMood()}
-            style={{
-              position: 'fixed',
-              bottom: '2rem',
-              right: '8rem',
-              zIndex: 30,
-              padding: '0.75rem',
-              background: 'rgba(99, 102, 241, 0.8)',
-              border: 'none',
-              borderRadius: '50%',
-              color: 'white',
-              cursor: 'pointer',
-              fontSize: '1.5rem'
-            }}
-            title="Refresh mood data"
-          >
-            🔄
-          </button>
+
 
           {/* Chat Button */}
           <button
