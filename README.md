@@ -113,12 +113,5 @@ gaia-pulse/
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-
-- Built with ❤️ for Earth
-- Powered by IBM watsonx.ai
-- Inspired by the need to make climate science accessible
-
----
 
 **GaiaPulse** - Making Earth's heartbeat visible to everyone.
