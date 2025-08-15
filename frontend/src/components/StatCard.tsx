@@ -37,7 +37,7 @@ export function StatCard({ title, value, icon: Icon, trend, trendValue, color }:
       // Get current numeric value
       const currentMatch = displayValue.match(/^([+-]?\d*\.?\d*)(.*)$/)
       const currentNumber = currentMatch ? parseFloat(currentMatch[1]) : 0
-      const currentUnit = currentMatch ? currentMatch[2] : unit
+
 
       const duration = 800 // 0.8 second transition
       const startTime = Date.now()

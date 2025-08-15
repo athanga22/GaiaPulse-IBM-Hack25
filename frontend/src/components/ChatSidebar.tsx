@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Send, MessageCircle, Bot, Sparkles } from 'lucide-react'
+import { X, Send, Bot, Sparkles } from 'lucide-react'
 import { useMutation } from '@tanstack/react-query'
 import { sendChatMessage, type ChatResponse } from '../lib/api'
 

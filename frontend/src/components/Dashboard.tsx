@@ -11,7 +11,7 @@ import { Thermometer, Droplets, TreePine, Wind } from 'lucide-react'
 
 export function Dashboard() {
   const [isChatOpen, setIsChatOpen] = useState(false)
-  const { data: currentMood, isLoading: moodLoading, refetch: refetchMood } = useCurrentMood()
+  const { data: currentMood, isLoading: moodLoading } = useCurrentMood()
   const { data: pulseHistory, isLoading: historyLoading } = usePulseHistory()
 
   // Debug logging
@@ -182,12 +182,12 @@ export function Dashboard() {
                 minHeight: '500px',
                 marginBottom: '3rem'
               }}>
-                <MoodCircle mood={currentMood} isLoading={moodLoading} />
+                <MoodCircle mood={currentMood || null} isLoading={moodLoading} />
               </div>
 
               {/* Pulse History */}
               <div className="glass-card" style={{ padding: '2rem' }}>
-                <PulseHistoryChart data={pulseHistory} isLoading={historyLoading} />
+                <PulseHistoryChart data={pulseHistory || null} isLoading={historyLoading} />
               </div>
             </div>
 

@@ -25,7 +25,7 @@ export const PointSchema = z.object({
   unit: z.string(),
   source: z.enum(['nasa', 'weather', 'air_quality', 'ocean', 'forest', 'satellite', 'sensor', 'ai_prediction']),
   confidence: z.number(),
-  metadata: z.record(z.any()).optional()
+  metadata: z.record(z.string(), z.any()).optional()
 })
 
 export const PulseHistorySchema = z.object({

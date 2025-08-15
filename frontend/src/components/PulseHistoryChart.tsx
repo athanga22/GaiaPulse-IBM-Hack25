@@ -30,7 +30,7 @@ interface PulseHistoryChartProps {
   isLoading: boolean
 }
 
-export function PulseHistoryChart({ data, isLoading }: PulseHistoryChartProps) {
+export function PulseHistoryChart({ data }: PulseHistoryChartProps) {
   const [displayData, setDisplayData] = useState<any>(null)
   const [isTransitioning, setIsTransitioning] = useState(false)
 

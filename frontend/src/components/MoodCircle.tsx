@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import type { CurrentMood } from '../lib/api'
 
@@ -79,18 +79,7 @@ export function MoodCircle({ mood, isLoading }: MoodCircleProps) {
     }
   }
 
-  const getMoodDescription = (moodType: string) => {
-    switch (moodType) {
-      case 'healing':
-        return 'Environmental recovery detected'
-      case 'stressed':
-        return 'Environmental stress indicators'
-      case 'critical':
-        return 'Critical environmental conditions'
-      default:
-        return 'Stable environmental conditions'
-    }
-  }
+
 
   return (
     <div style={{ textAlign: 'center' }}>
