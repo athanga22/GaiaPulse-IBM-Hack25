@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 // API base URL - will use deployed backend URL in production
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8787'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://gaiapulse-ibm-hack25-production.up.railway.app'
 
 // Zod schemas for API validation
 export const CurrentMoodSchema = z.object({
